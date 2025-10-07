@@ -1,59 +1,69 @@
-#Set B: The Log File Parser
+# Set B: The Log File Parser
 
 #1
 def parse_log(log):
     parts = log.split()
-    log_level = parts[0]
-    message = "".join(parts[0])
+    log_level = parts[0] if len(parts) > 0 else "UNKNOWN"
+    message = " ".join(parts[3:]) if len(parts) > 3 else "No message found"
     return log_level, message
+
 
 #2
 def format_log_summary(log_level, message):
-    return "[{}] -> {}" , format(log_level, message)
+    return "[{}] -> {}".format(log_level, message)
+
 
 #3
 def find_all_emails(text):
-    return[word for word in text.split() if "@" in word]
+    return [word for word in text.split() if "@" in word]
+
 
 #4
 def convert_to_title_case(s):
     return s.replace("_", " ").title()
 
 
+# Main Menu
 def menu():
     while True:
-        print("Laboratory Activity 2: ")
-        print("1. Parse and Formatting: ")
-        print("2. Validation & Search: ")
-        print("3. Complex Manipulation: ")
-        print("4. Exit ")
-        choice = input("Enter Your Choice: ")
+        print("\nLaboratory Activity 2: ")
+        print("1. Slicing & Methods")
+        print("2. Formatting")
+        print("3. Validation & Search")
+        print("4. Complex Manipulation")
+        print("5. Exit")
         
-        
+        choice = input("Enter your choice: ")
+
         if choice == "1":
-            log = input("Enter The Log: ")
-            if len(log.split()) >= 5:
-                level, message = parse_log(log)
-                print(format_log_summary(level, message))
-            else:
-                print("Invalid log format. Try: 'ERROR 2024-10-06 14:35:01 Database connection failed'")
+            log = input("Enter log line (ex. 'ERROR 2024-10-06 14:35:01 Database connection failed'): ")
+            log_level, message = parse_log(log)
+            print("Log Level:", log_level)
+            print("Message:", message)
 
         elif choice == "2":
-            text = input("Enter text: ")
-            emails = find_all_emails(text)
-            print("Emails found:", emails)
+            log = input("Enter log line (ex. 'ERROR 2024-10-06 14:35:01 Database connection failed'): ")
+            log_level, message = parse_log(log)
+            print(format_log_summary(log_level, message))
 
         elif choice == "3":
-            snake_str = input("Enter snake_case string: ")
-            print("Converted:", convert_to_title_case(snake_str))
+            text = input("Enter text: ")
+            emails = find_all_emails(text)
+            if emails:
+                print("Emails found:", ", ".join(emails))
+            else:
+                print("No emails found.")
 
         elif choice == "4":
-            print("Exiting program.")
+            underscores_word = input("Enter String with Underscores (ex. 'customer_account_id'): ")
+            print("Converted:", convert_to_title_case(underscores_word))
+
+        elif choice == "5":
             break
 
         else:
-            print("Invalid choice. Try again.")
-        
-if __name__ == "__menu__":
+            print("Invalid Input. Try again!")
+
+
+if __name__ == "__main__":
     menu()
-    

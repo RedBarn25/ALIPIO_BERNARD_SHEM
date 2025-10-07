@@ -22,53 +22,60 @@ def get_grade(grade):
 def multiply_all(*args):
     count = 1
     for num in args:
-        count += num
-        return count
+        count *= num
+    return count
         
 #4
 def print_formatted_info(title, **kwargs):
-    print(title.upper())
+    print("\n" + title.upper())
     for key, value in kwargs.items():
         print(f"{key}: {value}")
             
 
 def menu():
     while True:
-        print("Laboratory Activity 1: ")
-        print("1. Basic Function: ")
-        print("2. Return Statement: ")
-        print("3. *args Practice: ")
-        print("4. **kwargs Practice: ")
-        print("5. Exit ")
+        print("\nLaboratory Activity 1: ")
+        print("1. Basic Function")
+        print("2. Return Statement")
+        print("3. *args Practice")
+        print("4. **kwargs Practice")
+        print("5. Exit")
+
         choice = input("Enter Your Choice: ")
-        
-        
+
         if choice == "1":
             word = input("Enter a Word: ")
-            print("Is_Palindrome?", is_palindrome())
-                
+            print("Is Palindrome?", is_palindrome(word))
+
         elif choice == "2":
-            grade = input("Enter a Grade: ")
-            print("Your Grade Is: ", get_grade())
-            
+            grade = float(input("Enter a Grade (0–100): "))
+            print(get_grade(grade))
+
         elif choice == "3":
-            num = input("Enter Numbers: ")
-            print("Any Numbers Is: ", multiply_all(*num))
-                
+            num = input("Enter numbers separated by space: ")
+            numbers = [float(n) for n in num.split()]
+            print("Product of numbers:", multiply_all(*numbers))
+
         elif choice == "4":
+            title = input("Enter a title: ")
             print("Enter key-value pairs:")
             data = {}
-            title = input("Enter a title: ")
+            while True:
+                key = input("Key: ")
+                if not key:
+                    break
+                value = input("Value: ")
+                data[key] = value
             print_formatted_info(title, **data)
-                
+
         elif choice == "5":
-            print("Exit Program")
             break
-        
+
         else:
-            print("Invalid choice. Try again.")
-        
-if __name__ == "__menu__":
+            print("Invalid Input. Try again!")
+
+
+if __name__ == "__main__":
     menu()
     
     
