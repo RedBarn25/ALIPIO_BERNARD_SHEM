@@ -1,6 +1,6 @@
 # Set B: The Log File Parser
 
-#1
+#1 Slicing & Methods
 def parse_log(log):
     parts = log.split()
     log_level = parts[0] if len(parts) > 0 else "UNKNOWN"
@@ -8,17 +8,17 @@ def parse_log(log):
     return log_level, message
 
 
-#2
+#2 Formatting
 def format_log_summary(log_level, message):
     return "[{}] -> {}".format(log_level, message)
 
 
-#3
+#3 Validation & Search
 def find_all_emails(text):
     return [word for word in text.split() if "@" in word]
 
 
-#4
+#4 Complex Manipulation
 def convert_to_title_case(s):
     return s.replace("_", " ").title()
 

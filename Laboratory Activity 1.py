@@ -1,11 +1,11 @@
 #Set B: The Text and Number Analyzer
 
-#1
+#1 Basic Function
 def is_palindrome(word):
     word = word.lower().replace(" " ,"")
     return word == word[::-1]
 
-#2
+#2 Return Statement
 def get_grade(grade):
     if grade >= 90 and grade <= 100:
         return "Your Grade is : A (90-100)"
@@ -18,20 +18,20 @@ def get_grade(grade):
     else:
         return "Your Grade is : F (<60)"
     
-#3
+#3 *args Practice
 def multiply_all(*args):
     count = 1
     for num in args:
         count *= num
     return count
         
-#4
+#4 **kwargs Practice
 def print_formatted_info(title, **kwargs):
     print("\n" + title.upper())
     for key, value in kwargs.items():
         print(f"{key}: {value}")
             
-
+#Main Menu
 def menu():
     while True:
         print("\nLaboratory Activity 1: ")
